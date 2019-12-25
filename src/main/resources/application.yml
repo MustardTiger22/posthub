@@ -1,0 +1,10 @@
+app:
+  datasource:
+    platform: postgres
+    jdbc-url: jdbc:postgresql://localhost:5432/vikopru?stringtype=unspecified
+    pool-size: 30
+    username: postgres
+    password:
+    driverClassName: org.postgresql.Driver
+
+
