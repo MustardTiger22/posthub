@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html>
 
@@ -16,16 +17,17 @@
 
 <body>
     <nav class="navbar navbar-light navbar-expand-md navigation-clean-button">
-        <div class="container"><a class="navbar-brand" href="#">vikop.pl</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="container"><a class="navbar-brand" href="#">vikop.ru</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse"
                 id="navcol-1">
                 <ul class="nav navbar-nav mr-auto">
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="#">Wykopalisko</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link active" href="#">Mikroblog</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link active" href="#">Wykopalisko</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="mikroblog.jsp">Mikroblog</a></li>
                 </ul><span class="navbar-text actions"> <a class="login" href="#">Log In</a><a class="btn btn-light action-button" role="button" href="#">Sign Up</a></span></div>
         </div>
     </nav>
-    <div class="row" style="margin: 0px;padding: 20px;height: 300px;">
+    <c:forEach var="wykopalisko" items="${wykopaliska}">
+    <div class="row" style="margin: 0px;padding: 20px;height: 230px;">
         <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4" style="padding:0px;">
             <div style="background-image: url('${pageContext.request.contextPath}/resources/img/mac.jpeg');height: 100%;background-repeat: no-repeat;background-size: cover;background-position: center;"></div>
         </div>
@@ -33,26 +35,17 @@
         <div class="col" style="padding: 0px;">
             <div class="card" style="height: 100%;">
                 <div class="card-body">
-                    <h4 class="card-title">Title</h4>
-                    <h6 class="text-muted card-subtitle mb-2">Subtitle</h6>
-                    <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p><a class="card-link" href="#">Wykop</a><a class="card-link" href="#">Zakop</a></div>
+                    <h4 class="card-title">${wykopalisko.title}</h4>
+                    <p class="card-text">${wykopalisko.description}</p>
+                    <a class="card-link" href="${wykopalisko.sourceUrl}">Źródło</a>
+                    <a class="card-link" href="#">Wykop(${wykopalisko.ratingPlus})</a>
+                    <a class="card-link" href="#">Zakop(${wykopalisko.ratingMinus})</a>
+                    <h6 class="text-muted card-text mb-2">Dodano: ${wykopalisko.timestamp}</h6>
+                </div>
             </div>
         </div>
     </div>
-    <div class="row" style="margin: 0px;padding: 20px;height: 300px;">
-        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4" style="padding:0px;">
-            <div style="background-image: url('${pageContext.request.contextPath}/resources/img/mac.jpeg');height: 100%;background-repeat: no-repeat;background-size: cover;background-position: center;"></div>
-        </div>
-        <div class="w-100 d-sm-block d-md-none d-lg-none d-xl-none"></div>
-        <div class="col" style="padding: 0px;">
-            <div class="card" style="height: 100%;">
-                <div class="card-body">
-                    <h4 class="card-title">Title</h4>
-                    <h6 class="text-muted card-subtitle mb-2">Subtitle</h6>
-                    <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p><a class="card-link" href="#">Wykop</a><a class="card-link" href="#">Zakop</a></div>
-            </div>
-        </div>
-    </div>
+    </c:forEach>
     <div class="footer-clean">
         <footer>
             <div class="container">

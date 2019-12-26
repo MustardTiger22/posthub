@@ -13,33 +13,43 @@ public class Wykopalisko {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_wykopalisko")
     private Long idWykopalisko;
+
     @Column(name = "title")
     private String title;
+
     @Column(name = "description")
     private String description;
+
     @Column(name = "rating_plus")
     private Long ratingPlus;
+
     @Column(name = "rating_minus")
     private Long ratingMinus;
+
     @Column(name = "timestamp")
     private Timestamp timestamp;
+
     @Column(name = "source_url")
     private String sourceUrl;
+
     @Column(name = "image_src")
     private String imageSrc;
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
-                        CascadeType.DETACH, CascadeType.REFRESH})
+
+    @ManyToOne(fetch = FetchType.LAZY,
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+                    CascadeType.DETACH, CascadeType.REFRESH})
     @JoinColumn(name = "id_user")
     private User user;
 
+    public Wykopalisko() {
+    }
 
     public Wykopalisko(String title,
                        String description,
                        Long ratingPlus,
                        Long ratingMinus,
                        String sourceUrl,
-                       String imageSrc,
-                       User user) {
+                       String imageSrc) {
         this.title = title;
         this.description = description;
         this.ratingPlus = ratingPlus;
@@ -47,7 +57,6 @@ public class Wykopalisko {
         this.timestamp = Timestamp.from(Instant.now());
         this.sourceUrl = sourceUrl;
         this.imageSrc = imageSrc;
-        this.user = user;
     }
 
 

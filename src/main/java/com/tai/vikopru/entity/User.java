@@ -9,32 +9,44 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name = "user")
+@Table(name = "wykop_user")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_user")
     private Long idUser;
+
     @Column(name = "username")
     private String username;
+
     @Column(name = "password")
     private String password;
+
     @Column(name = "email")
     private String email;
+
     @Column(name = "first_name")
     private String firstName;
+
     @Column(name = "last_name")
     private String lastName;
+
     @Column(name = "gender")
     private String gender;
+
     @Column(name = "avatar_path")
     private String avatarPath;
+
     @Column(name = "create_date")
     private Timestamp createDate;
+
     @OneToMany(mappedBy = "user",
             cascade = {CascadeType.PERSIST, CascadeType.MERGE,
                     CascadeType.DETACH, CascadeType.REFRESH})
     private List<Wykopalisko> wykopaliska;
+
+    public User() {
+    }
 
     public User(String username,
                 String password,
