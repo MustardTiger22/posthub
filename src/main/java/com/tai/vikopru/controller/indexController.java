@@ -2,18 +2,12 @@ package com.tai.vikopru.controller;
 
 import com.tai.vikopru.dao.UserDAO;
 import com.tai.vikopru.dao.WykopaliskoDAO;
-import com.tai.vikopru.entity.User;
 import com.tai.vikopru.entity.Wykopalisko;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class indexController {
@@ -29,4 +23,15 @@ public class indexController {
         model.addAttribute("wykopaliska", wykopaliska);
         return "index";
     }
+
+    @GetMapping("/login")
+    public String loginPage(Model model){
+        return "login";
+    }
+
+    @GetMapping("/mikroblog")
+    public String mikroblogPage(Model model){
+        return "mikroblog";
+    }
+
 }

@@ -21,9 +21,9 @@
             <div class="collapse navbar-collapse"
                 id="navcol-1">
                 <ul class="nav navbar-nav mr-auto">
-                    <li class="nav-item" role="presentation"><a class="nav-link active" href="#">Wykopalisko</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="#">Mikroblog</a></li>
-                </ul><span class="navbar-text actions"> <a class="login" href="#">Log In</a><a class="btn btn-light action-button" role="button" href="#">Sign Up</a></span></div>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/">Wykopalisko</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link active" href="#">Mikroblog</a></li>
+                </ul><span class="navbar-text actions"> <a class="login" href="/login">Log In</a><a class="btn btn-light action-button" role="button" href="#">Sign Up</a></span></div>
         </div>
     </nav>
     <div class="row" style="margin: 0px;padding: 20px;height: 300px;">
