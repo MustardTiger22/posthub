@@ -1,4 +1,4 @@
-package com.tai.vikopru.datasource;
+package com.tai.vikopru.configuration;
 
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -39,4 +39,5 @@ public class HibernateConf {
                 "hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
         return hibernateProperties;
     }
+
 }
