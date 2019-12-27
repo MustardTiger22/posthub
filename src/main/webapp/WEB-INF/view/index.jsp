@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 
@@ -16,6 +17,9 @@
 </head>
 
 <body>
+<security:authorize access="isAuthenticated()">
+    <h1>authenticated as <security:authentication property="principal.username" /></h1>
+</security:authorize>
     <nav class="navbar navbar-light navbar-expand-md navigation-clean-button">
         <div class="container"><a class="navbar-brand" href="#">vikop.ru</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse"
