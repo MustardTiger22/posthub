@@ -1,5 +1,6 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
@@ -17,19 +18,37 @@
 </head>
 
 <body>
-<security:authorize access="isAuthenticated()">
-    <h1>authenticated as <security:authentication property="principal.username" /></h1>
-</security:authorize>
-    <nav class="navbar navbar-light navbar-expand-md navigation-clean-button">
-        <div class="container"><a class="navbar-brand" href="#">vikop.ru</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse"
-                id="navcol-1">
-                <ul class="nav navbar-nav mr-auto">
-                    <li class="nav-item" role="presentation"><a class="nav-link active" href="#">Wykopalisko</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="/mikroblog">Mikroblog</a></li>
-                </ul><span class="navbar-text actions"> <a class="login" href="/login">Log In</a><a class="btn btn-light action-button" role="button" href="#">Sign Up</a></span></div>
+
+<nav class="navbar navbar-light navbar-expand-md navigation-clean-button">
+    <div class="container"><a class="navbar-brand" href="#">vikop.ru</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navcol-1">
+            <ul class="nav navbar-nav mr-auto">
+                <li class="nav-item" role="presentation"><a class="nav-link active" href="#">Wykopalisko</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="${pageContext.request.contextPath}/mikroblog">Mikroblog</a></li>
+            </ul>
+            <security:authorize access="isAnonymous()">
+            <span class="navbar-text">
+                <a class="login" href="${pageContext.request.contextPath}/login">Log In</a>
+                <a class="btn btn-light action-button" role="button" href="#">Sign Up</a>
+            </span>
+            </security:authorize>
+            <security:authorize access="isAuthenticated()">
+<%--                <security:authorize access="hasRole('ADMIN')">--%>
+<%--                    --%>
+<%--                </security:authorize>--%>
+            <span class="navbar-text">
+                <a>
+                <form:form action="${pageContext.request.contextPath}/logout" method="post">
+                    <input type="submit" value="Log Out" class="btn btn-light action-button">
+                </form:form>
+                </a>
+                <a class="btn btn-light action-button" role="button" href="#">Profil</a>
+            </span>
+            </security:authorize>
         </div>
-    </nav>
+    </div>
+</nav>
+
     <c:forEach var="wykopalisko" items="${wykopaliska}">
     <div class="row" style="margin: 0px;padding: 20px;height: 230px;">
         <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4" style="padding:0px;">

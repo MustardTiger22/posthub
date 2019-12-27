@@ -44,6 +44,18 @@
 			<artifactId>spring-orm</artifactId>
 			<version>5.2.2.RELEASE</version>
 		</dependency>
+		<!-- HIBERNATE VALIDATOR-->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>6.1.0.Final</version>
+		</dependency>
+		<!-- SPRING TRANSACTIONS-->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>5.2.2.RELEASE</version>
+		</dependency>
 		<!-- LOMBOK -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -88,7 +100,6 @@
 			<artifactId>spring-security-taglibs</artifactId>
 			<version>5.2.1.RELEASE</version>
 		</dependency>
-
 	</dependencies>
 
 	<build>

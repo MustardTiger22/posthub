@@ -41,6 +41,13 @@
                 <button class="btn btn-primary btn-block" type="submit">Log In</button>
             </div>
         </form:form>
+        <div>
+            <a href="${pageContext.request.contextPath}/register/showRegistrationForm"
+               class="btn btn-primary"
+               role="button" aria-pressed="true">
+                Register New User
+            </a>
+        </div>
     </div>
     <div class="footer-clean">
         <footer>
