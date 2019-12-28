@@ -38,16 +38,15 @@ public class UserService implements UserDetailsService {
 
     @Transactional
     public void save(CrmUser crmUser) {
-        User user = new User();
-        // assign user details to the user object
-        user.setUsername(crmUser.getUserName());
-        user.setPassword(passwordEncoder.encode(crmUser.getPassword()));
-        user.setFirstName(crmUser.getFirstName());
-        user.setLastName(crmUser.getLastName());
-        user.setEmail(crmUser.getEmail());
+        User user = new User(
+                crmUser.getUserName(),
+                passwordEncoder.encode(crmUser.getPassword()),
+                crmUser.getEmail(),
+                crmUser.getFirstName(),
+                crmUser.getLastName());
 
         // give user default role of "employee"
-        user.setRoles(Arrays.asList(roleDao.findRoleByName("ROLE_EMPLOYEE")));
+        user.setRoles(Arrays.asList(roleDao.findRoleByName("ROLE_USER")));
 
         // save user in the database
         userDao.save(user);

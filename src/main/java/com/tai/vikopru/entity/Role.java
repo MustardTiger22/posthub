@@ -1,7 +1,6 @@
 package com.tai.vikopru.entity;
 
 import lombok.Data;
-
 import javax.persistence.*;
 
 @Data
@@ -9,7 +8,7 @@ import javax.persistence.*;
 @Table(name = "role")
 public class Role {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id_role")
     private Long id;
 

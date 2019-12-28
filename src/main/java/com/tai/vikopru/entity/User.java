@@ -13,7 +13,7 @@ import java.util.List;
 @Table(name = "wykop_user")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id_user")
     private Long idUser;
 
@@ -69,6 +69,20 @@ public class User {
         this.lastName = lastName;
         this.gender = gender;
         this.avatarPath = avatarPath;
+        this.createDate = Timestamp.from(Instant.now());
+    }
+
+    public User(String username,
+                String password,
+                String email,
+                String firstName,
+                String lastName) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.gender = "M";
         this.createDate = Timestamp.from(Instant.now());
     }
 

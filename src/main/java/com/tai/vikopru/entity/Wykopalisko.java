@@ -10,7 +10,7 @@ import java.time.Instant;
 @Table(name = "wykopalisko")
 public class Wykopalisko {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id_wykopalisko")
     private Long idWykopalisko;
 

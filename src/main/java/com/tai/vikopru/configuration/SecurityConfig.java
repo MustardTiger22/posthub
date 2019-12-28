@@ -20,19 +20,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     HikariDataSource dataSource;
     @Autowired
     UserService userService;
+    @Autowired
+    private CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.jdbcAuthentication()
-                .dataSource(dataSource)
-                .usersByUsernameQuery("select username, password, enabled from wykop_user where username = ?")
-                .authoritiesByUsernameQuery("select username, authority from authorities where username = ?");
+        auth.authenticationProvider(authenticationProvider());
+//        auth.jdbcAuthentication()
+//                .dataSource(dataSource)
+//                .usersByUsernameQuery("select username, password, enabled from wykop_user where username = ?")
+//                .authoritiesByUsernameQuery("select username, authority from authorities where username = ?");
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .anyRequest().authenticated()
+                .antMatchers("/mikroblog/**").hasRole("USER")
             .and()
                 .formLogin()
                     .loginPage("/login")
@@ -53,7 +56,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-    //authenticationProvider bean definition
+
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
