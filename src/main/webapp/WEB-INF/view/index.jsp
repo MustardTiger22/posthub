@@ -1,8 +1,16 @@
 <%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <jsp:include page="${pageContext.request.contextPath}/resources/layout/header.jsp" />
 
+    <security:authorize access="isAuthenticated()">
+        <div class="col-2">
+            <a href="${pageContext.request.contextPath}/wykopalisko" class="btn btn-primary" role="button" aria-pressed="true">
+                Dodaj znalezisko
+            </a>
+        </div>
+    </security:authorize>
     <c:forEach var="wykopalisko" items="${wykopaliska}">
     <div class="row" style="margin: 0px;padding: 20px;height: 230px;">
         <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4" style="padding:0px;">

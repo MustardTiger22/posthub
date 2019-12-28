@@ -1,9 +1,6 @@
 package com.tai.vikopru.entity;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.time.Instant;
@@ -24,10 +21,10 @@ public class Wykopalisko {
     private String description;
 
     @Column(name = "rating_plus")
-    private Long ratingPlus;
+    private Integer ratingPlus;
 
     @Column(name = "rating_minus")
-    private Long ratingMinus;
+    private Integer ratingMinus;
 
     @Column(name = "timestamp")
     private Timestamp timestamp;
@@ -41,7 +38,6 @@ public class Wykopalisko {
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
                             CascadeType.DETACH, CascadeType.REFRESH})
     @JoinColumn(name = "id_user")
-    @Getter @Setter
     private User user;
 
     public Wykopalisko() {
@@ -49,8 +45,8 @@ public class Wykopalisko {
 
     public Wykopalisko(String title,
                        String description,
-                       Long ratingPlus,
-                       Long ratingMinus,
+                       Integer ratingPlus,
+                       Integer ratingMinus,
                        String sourceUrl,
                        String imageSrc) {
         this.title = title;
@@ -62,14 +58,22 @@ public class Wykopalisko {
         this.imageSrc = imageSrc;
     }
 
+    public Wykopalisko(String title, String description, String imageSrc, String sourceUrl) {
+        this.title = title;
+        this.description = description;
+        this.sourceUrl = sourceUrl;
+        this.imageSrc = imageSrc;
+        this.timestamp = Timestamp.from(Instant.now());
+        this.ratingPlus = 0;
+        this.ratingMinus = 0;
+    }
+
     @Override
     public String toString() {
         return "Wykopalisko{" +
                 "idWykopalisko=" + idWykopalisko +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
-                ", ratingPlus=" + ratingPlus +
-                ", ratingMinus=" + ratingMinus +
                 ", timestamp=" + timestamp +
                 ", sourceUrl='" + sourceUrl + '\'' +
                 ", imageSrc='" + imageSrc + '\'' +

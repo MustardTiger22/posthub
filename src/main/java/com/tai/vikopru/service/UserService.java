@@ -14,7 +14,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.stream.Collectors;
@@ -45,9 +44,7 @@ public class UserService implements UserDetailsService {
                 crmUser.getLastName(),
                 crmUser.getGender());
 
-        // give user default role of "USER"
         user.setRoles(Arrays.asList(roleDao.findRoleByName("ROLE_USER")));
-
         userDao.save(user);
     }
 
@@ -56,7 +53,7 @@ public class UserService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userDao.findByUserName(username);
         if (user == null) {
-            throw new UsernameNotFoundException("Nieprawidłowy login lub hasło.");
+            throw new UsernameNotFoundException("Nie znaleziono użytkownika.");
         }
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
                 mapRolesToAuthorities(user.getRoles()));

@@ -20,16 +20,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     HikariDataSource dataSource;
     @Autowired
     UserService userService;
-    @Autowired
-    private CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(authenticationProvider());
-//        auth.jdbcAuthentication()
-//                .dataSource(dataSource)
-//                .usersByUsernameQuery("select username, password, enabled from wykop_user where username = ?")
-//                .authoritiesByUsernameQuery("select username, authority from authorities where username = ?");
     }
 
     @Override

@@ -17,7 +17,7 @@
                         <div class="avatar-bg center"></div>
                     </div><input type="file" class="form-control" name="avatar-file"></div>
                 <div class="col-md-8">
-                    <h1>Profile </h1>
+                    <h1>Profil</h1>
                     <hr>
                     <div class="form-row">
                         <div class="col-sm-12 col-md-6">
@@ -50,7 +50,7 @@
                 <h1>Dodane znaleziska:</h1>
                 <hr>
                 <c:forEach var="wykopalisko" items="${user.wykopaliska}">
-                    <div class="row" style="margin: 0px;padding: 20px;height: 230px;">
+                    <div class="row" style="margin: 0px; padding: 20px;height: 230px;">
                         <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4" style="padding:0px;">
                             <div style="background-image: url('${pageContext.request.contextPath}/resources/img/mac.jpeg');height: 100%;background-repeat: no-repeat;background-size: cover;background-position: center;"></div>
                         </div>

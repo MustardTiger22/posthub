@@ -28,7 +28,8 @@ public class WykopaliskoDAO implements DAO<Wykopalisko> {
 
     @Override
     public void save(Wykopalisko wykopalisko) {
-
+        Session session = sessionFactory.getCurrentSession();
+        session.saveOrUpdate(wykopalisko);
     }
 
     @Override

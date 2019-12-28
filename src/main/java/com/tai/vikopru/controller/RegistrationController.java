@@ -25,14 +25,14 @@ public class RegistrationController {
     }
 
     @PostMapping("/processForm")
-    public String ProcessRegistrationFormPage(@Valid @ModelAttribute("crmUser") CrmUser theCrmUser,
+    public String ProcessRegistrationFormPage(@Valid @ModelAttribute("crmUser") CrmUser crmUser,
                                               BindingResult theBindingResult,
                                               Model theModel) {
         // form validation
         if (theBindingResult.hasErrors()){
             return "registration-form";
         }
-        String username = theCrmUser.getUsername();
+        String username = crmUser.getUsername();
         // check the database if user already exists
         User existing = userService.findByUserName(username);
         if (existing != null){
@@ -41,7 +41,7 @@ public class RegistrationController {
             return "registration-form";
         }
 
-        userService.save(theCrmUser);
+        userService.save(crmUser);
         return "login";
     }
 
