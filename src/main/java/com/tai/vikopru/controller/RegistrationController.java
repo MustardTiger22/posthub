@@ -2,7 +2,7 @@ package com.tai.vikopru.controller;
 
 import com.tai.vikopru.entity.User;
 import com.tai.vikopru.service.UserService;
-import com.tai.vikopru.validation.CrmUser;
+import com.tai.vikopru.crm.CrmUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
@@ -18,7 +18,7 @@ public class RegistrationController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/form")
+    @GetMapping
     public String RegistrationFormPage(Model model) {
         model.addAttribute("crmUser", new CrmUser());
         return "registration-form";
@@ -32,15 +32,15 @@ public class RegistrationController {
         if (theBindingResult.hasErrors()){
             return "registration-form";
         }
-        String userName = theCrmUser.getUserName();
+        String username = theCrmUser.getUsername();
         // check the database if user already exists
-        User existing = userService.findByUserName(userName);
+        User existing = userService.findByUserName(username);
         if (existing != null){
             theModel.addAttribute("crmUser", new CrmUser());
-            theModel.addAttribute("registrationError", "User name already exists.");
+            theModel.addAttribute("registrationError", "Nazwa użytkownika jest zajęta.");
             return "registration-form";
         }
-        // create user account
+
         userService.save(theCrmUser);
         return "login";
     }

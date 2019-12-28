@@ -4,7 +4,7 @@ import com.tai.vikopru.dao.RoleDAO;
 import com.tai.vikopru.dao.UserDAO;
 import com.tai.vikopru.entity.Role;
 import com.tai.vikopru.entity.User;
-import com.tai.vikopru.validation.CrmUser;
+import com.tai.vikopru.crm.CrmUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -31,33 +31,32 @@ public class UserService implements UserDetailsService {
     private BCryptPasswordEncoder passwordEncoder;
 
     @Transactional
-    public User findByUserName(String userName) {
-        // check the database if the user already exists
-        return userDao.findByUserName(userName);
+    public User findByUserName(String username) {
+        return userDao.findByUserName(username);
     }
 
     @Transactional
     public void save(CrmUser crmUser) {
         User user = new User(
-                crmUser.getUserName(),
+                crmUser.getUsername(),
                 passwordEncoder.encode(crmUser.getPassword()),
                 crmUser.getEmail(),
                 crmUser.getFirstName(),
-                crmUser.getLastName());
+                crmUser.getLastName(),
+                crmUser.getGender());
 
-        // give user default role of "employee"
+        // give user default role of "USER"
         user.setRoles(Arrays.asList(roleDao.findRoleByName("ROLE_USER")));
 
-        // save user in the database
         userDao.save(user);
     }
 
     @Override
     @Transactional
-    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-        User user = userDao.findByUserName(userName);
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userDao.findByUserName(username);
         if (user == null) {
-            throw new UsernameNotFoundException("Invalid username or password.");
+            throw new UsernameNotFoundException("Nieprawidłowy login lub hasło.");
         }
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
                 mapRolesToAuthorities(user.getRoles()));

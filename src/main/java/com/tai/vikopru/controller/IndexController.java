@@ -7,11 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
 @Controller
+@RequestMapping("/")
 public class IndexController {
     @Autowired
     UserDAO userDAO;
@@ -19,17 +20,11 @@ public class IndexController {
     @Autowired
     WykopaliskoDAO wykopaliskoDAO;
 
-    @GetMapping("/")
+    @GetMapping
     public String indexPage(Model model){
         List<Wykopalisko> wykopaliska = wykopaliskoDAO.getAll();
         model.addAttribute("wykopaliska", wykopaliska);
         return "index";
-    }
-
-
-    @GetMapping("/login")
-    public String loginPage(Model model){
-        return "login";
     }
 
     @GetMapping("/mikroblog")

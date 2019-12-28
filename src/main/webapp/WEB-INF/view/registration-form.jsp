@@ -1,6 +1,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 <!doctype html>
 <html lang="en">
 
@@ -66,22 +66,22 @@
                     <!-- User name -->
                     <div style="margin-bottom: 25px" class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <form:errors path="userName" cssClass="error" />
-                        <form:input path="userName" placeholder="username (*)" class="form-control" />
+                        <form:errors path="username" cssClass="error" />
+                        <form:input path="username" placeholder="Nazwa użytkownika (*)" class="form-control" />
                     </div>
 
                     <!-- Password -->
                     <div style="margin-bottom: 25px" class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                         <form:errors path="password" cssClass="error" />
-                        <form:password path="password" placeholder="password (*)" class="form-control" />
+                        <form:password path="password" placeholder="Hasło (*)" class="form-control" />
                     </div>
 
                     <!-- Confirm Password -->
                     <div style="margin-bottom: 25px" class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                         <form:errors path="matchingPassword" cssClass="error" />
-                        <form:password path="matchingPassword" placeholder="confirm password (*)" class="form-control" />
+                        <form:password path="matchingPassword" placeholder="Powtórz hasło (*)" class="form-control" />
                     </div>
 
 
@@ -89,21 +89,32 @@
                     <div style="margin-bottom: 25px" class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                         <form:errors path="firstName" cssClass="error" />
-                        <form:input path="firstName" placeholder="first name (*)" class="form-control" />
+                        <form:input path="firstName" placeholder="Imię (*)" class="form-control" />
                     </div>
 
                     <!-- Last name -->
                     <div style="margin-bottom: 25px" class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                         <form:errors path="lastName" cssClass="error" />
-                        <form:input path="lastName" placeholder="last name (*)" class="form-control" />
+                        <form:input path="lastName" placeholder="Nazwisko (*)" class="form-control" />
                     </div>
 
                     <!-- Email -->
                     <div style="margin-bottom: 25px" class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                         <form:errors path="email" cssClass="error" />
-                        <form:input path="email" placeholder="email (*)" class="form-control" />
+                        <form:input path="email" placeholder="Email (*)" class="form-control" />
+                    </div>
+
+                    <!-- Email -->
+                    <div style="margin-bottom: 25px" class="input-group">
+                        <form:errors path="gender" cssClass="error" />
+                        <label class="radio-inline">
+                            <form:radiobutton path="gender" value="M" />Mężczyzna
+                        </label>
+                        <label class="radio-inline">
+                            <form:radiobutton path="gender" value="K" />Kobieta
+                        </label>
                     </div>
 
 

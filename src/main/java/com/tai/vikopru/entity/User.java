@@ -1,6 +1,9 @@
 package com.tai.vikopru.entity;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.time.Instant;
@@ -41,9 +44,10 @@ public class User {
     @Column(name = "create_date")
     private Timestamp createDate;
 
-    @OneToMany(mappedBy = "user",
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER,
             cascade = {CascadeType.PERSIST, CascadeType.MERGE,
                     CascadeType.DETACH, CascadeType.REFRESH})
+    @Getter @Setter
     private List<Wykopalisko> wykopaliska;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -76,13 +80,14 @@ public class User {
                 String password,
                 String email,
                 String firstName,
-                String lastName) {
+                String lastName,
+                String gender) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.gender = "M";
+        this.gender = gender;
         this.createDate = Timestamp.from(Instant.now());
     }
 
@@ -92,5 +97,21 @@ public class User {
         }
         wykopaliska.add(wykopalisko);
         wykopalisko.setUser(this);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "idUser=" + idUser +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", gender='" + gender + '\'' +
+                ", avatarPath='" + avatarPath + '\'' +
+                ", createDate=" + createDate +
+                ", roles=" + roles +
+                '}';
     }
 }

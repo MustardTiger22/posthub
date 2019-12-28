@@ -1,6 +1,9 @@
 package com.tai.vikopru.entity;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.time.Instant;
@@ -35,10 +38,10 @@ public class Wykopalisko {
     @Column(name = "image_src")
     private String imageSrc;
 
-    @ManyToOne(fetch = FetchType.LAZY,
-            cascade = {CascadeType.PERSIST, CascadeType.MERGE,
-                    CascadeType.DETACH, CascadeType.REFRESH})
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+                            CascadeType.DETACH, CascadeType.REFRESH})
     @JoinColumn(name = "id_user")
+    @Getter @Setter
     private User user;
 
     public Wykopalisko() {
@@ -59,6 +62,17 @@ public class Wykopalisko {
         this.imageSrc = imageSrc;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "Wykopalisko{" +
+                "idWykopalisko=" + idWykopalisko +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", ratingPlus=" + ratingPlus +
+                ", ratingMinus=" + ratingMinus +
+                ", timestamp=" + timestamp +
+                ", sourceUrl='" + sourceUrl + '\'' +
+                ", imageSrc='" + imageSrc + '\'' +
+                '}';
+    }
 }

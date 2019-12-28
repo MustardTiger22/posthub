@@ -28,9 +28,9 @@ public class UserDAO implements DAO<User> {
     }
 
     @Override
-    public void save(User theUser) {
+    public void save(User user) {
         Session currentSession = sessionFactory.getCurrentSession();
-        currentSession.saveOrUpdate(theUser);
+        currentSession.saveOrUpdate(user);
     }
 
     @Override
@@ -43,13 +43,13 @@ public class UserDAO implements DAO<User> {
 
     }
 
-    public User findByUserName(String theUserName) {
+    public User findByUserName(String username) {
         Session currentSession = sessionFactory.getCurrentSession();
-        Query<User> theQuery = currentSession.createQuery("from User where username=:uName", User.class);
-        theQuery.setParameter("uName", theUserName);
+        Query<User> query = currentSession.createQuery("from User where username=:uName", User.class);
+        query.setParameter("uName", username);
         User user = null;
         try {
-            user = theQuery.getSingleResult();
+            user = query.getSingleResult();
         } catch (Exception e) {
             user = null;
         }
