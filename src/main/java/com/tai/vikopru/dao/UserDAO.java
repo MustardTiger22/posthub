@@ -10,13 +10,12 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
-@Transactional
 @Repository
 public class UserDAO implements DAO<User> {
     @Autowired
     SessionFactory sessionFactory;
     @Override
-    public Optional<User> get(Long id) {
+    public Optional<User> get(Integer id) {
         Session session = sessionFactory.getCurrentSession();
         User user = session.get(User.class, id);
         return Optional.ofNullable(user);
@@ -39,7 +38,7 @@ public class UserDAO implements DAO<User> {
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(Integer id) {
 
     }
 

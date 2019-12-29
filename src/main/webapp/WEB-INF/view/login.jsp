@@ -6,7 +6,7 @@
 
     <div class="login-clean">
         <form:form action="${pageContext.request.contextPath}/perform_login" method="POST">
-            <h2 class="sr-only">Login Form</h2>
+            <h2 class="">Login Form</h2>
             <div class="illustration"><i class="icon ion-ios-navigate"></i></div>
             <c:if test="${param.error != null}">
                 <i>Błędny login lub hasło!</i>

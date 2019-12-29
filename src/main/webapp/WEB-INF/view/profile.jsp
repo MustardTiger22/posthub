@@ -52,7 +52,7 @@
                 <c:forEach var="wykopalisko" items="${user.wykopaliska}">
                     <div class="row" style="margin: 0px; padding: 20px;height: 230px;">
                         <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4" style="padding:0px;">
-                            <div style="background-image: url('${pageContext.request.contextPath}/resources/img/mac.jpeg');height: 100%;background-repeat: no-repeat;background-size: cover;background-position: center;"></div>
+                            <div style="background-image: url('${wykopalisko.imageSrc}');height: 100%;background-repeat: no-repeat;background-size: cover;background-position: center;"></div>
                         </div>
                         <div class="w-100 d-sm-block d-md-none d-lg-none d-xl-none"></div>
                         <div class="col" style="padding: 0px;">

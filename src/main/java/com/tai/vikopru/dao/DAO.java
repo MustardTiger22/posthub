@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface DAO<T> {
-    Optional<T> get(Long id);
+    Optional<T> get(Integer id);
 
     List<T> getAll();
 
@@ -12,5 +12,5 @@ public interface DAO<T> {
 
     void update(T t, String[] params);
 
-    void delete(Long id);
+    void delete(Integer id);
 }

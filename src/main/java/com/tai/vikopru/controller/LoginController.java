@@ -12,6 +12,7 @@ public class LoginController {
     public String loginPage(Model model){
         return "login";
     }
+
     @GetMapping("/performLogin")
     public String performLoginPage(Model model){
         return "index";

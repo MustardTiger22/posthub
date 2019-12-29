@@ -32,7 +32,7 @@ public class RoleDAO implements DAO<Role> {
     }
 
     @Override
-    public Optional<Role> get(Long id) {
+    public Optional<Role> get(Integer id) {
         return Optional.empty();
     }
 
@@ -52,7 +52,7 @@ public class RoleDAO implements DAO<Role> {
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(Integer id) {
 
     }
 }

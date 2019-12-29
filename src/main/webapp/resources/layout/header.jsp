@@ -9,8 +9,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 <meta charset="utf-8">
 <title>vikop</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/font-awesome.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/Contact-Form-Clean.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/Footer-Clean.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/Login-Form-Clean.css">
@@ -46,7 +48,7 @@
                             </span>
                         </security:authorize>
                         <span class="navbar-text">
-                            <a class="btn btn-light action-button" role="button" href="${pageContext.request.contextPath}/profile">Profil</a>
+                            <a class="btn btn-light action-button" role="button" href="${pageContext.request.contextPath}/profile/<security:authentication property="principal.username"/>">Profil</a>
                         </span>
                         <form:form action="${pageContext.request.contextPath}/logout" method="post">
                             <input type="submit" value="Log Out" class="btn btn-light action-button">

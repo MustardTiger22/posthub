@@ -10,14 +10,15 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-@Transactional
 public class WykopaliskoDAO implements DAO<Wykopalisko> {
     @Autowired
     SessionFactory sessionFactory;
 
     @Override
-    public Optional<Wykopalisko> get(Long id) {
-        return Optional.empty();
+    public Optional<Wykopalisko> get(Integer id) {
+        Session session = sessionFactory.getCurrentSession();
+        Wykopalisko wykopalisko = session.get(Wykopalisko.class, id);
+        return Optional.ofNullable(wykopalisko);
     }
 
     @Override
@@ -38,7 +39,7 @@ public class WykopaliskoDAO implements DAO<Wykopalisko> {
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(Integer id) {
 
     }
 }

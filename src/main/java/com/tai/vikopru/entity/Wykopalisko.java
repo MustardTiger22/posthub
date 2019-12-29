@@ -12,7 +12,7 @@ public class Wykopalisko {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id_wykopalisko")
-    private Long idWykopalisko;
+    private Integer idWykopalisko;
 
     @Column(name = "title")
     private String title;

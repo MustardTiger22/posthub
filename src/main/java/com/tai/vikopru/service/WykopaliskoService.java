@@ -8,6 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -17,12 +21,12 @@ public class WykopaliskoService {
     @Autowired
     WykopaliskoDAO wykopaliskoDAO;
 
+    @Transactional
     public void save(CrmWykopalisko crmWykopalisko) {
 //        Get current logged in user
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName();
         User user = userService.findByUserName(username);
-        System.out.printf("Username: " + String.valueOf(auth.getPrincipal()));
 
         Wykopalisko wykopalisko = new Wykopalisko(
                 crmWykopalisko.getTitle(),
@@ -32,5 +36,15 @@ public class WykopaliskoService {
         );
         wykopalisko.setUser(user);
         wykopaliskoDAO.save(wykopalisko);
+    }
+
+    @Transactional
+    public List<Wykopalisko> getAll(){
+        return wykopaliskoDAO.getAll();
+    }
+
+    @Transactional
+    public Optional<Wykopalisko> get(Integer id) {
+        return wykopaliskoDAO.get(id);
     }
 }

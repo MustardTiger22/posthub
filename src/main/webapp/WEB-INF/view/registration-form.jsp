@@ -1,41 +1,17 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
-<!doctype html>
-<html lang="en">
 
-<head>
+<jsp:include page="${pageContext.request.contextPath}/resources/layout/header.jsp" />
 
-    <title>Register New User Form</title>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Reference Bootstrap files -->
-    <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-
-    <script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-    <style>
-        .error {color:red}
-    </style>
-
-</head>
-
-<body>
-
-<div>
-
+<div class="d-flex justify-content-center">
     <div id="loginbox" style="margin-top: 50px;"
          class="mainbox col-md-3 col-md-offset-2 col-sm-6 col-sm-offset-2">
 
         <div class="panel panel-primary">
 
             <div class="panel-heading">
-                <div class="panel-title">Register New User</div>
+                <div class="panel-title"><h2>Rejestracja</h2></div>
             </div>
 
             <div style="padding-top: 30px" class="panel-body">
@@ -49,7 +25,6 @@
                     <div class="form-group">
                         <div class="col-xs-15">
                             <div>
-
                                 <!-- Check for registration error -->
                                 <c:if test="${registrationError != null}">
 
@@ -58,7 +33,6 @@
                                     </div>
 
                                 </c:if>
-
                             </div>
                         </div>
                     </div>
@@ -83,7 +57,6 @@
                         <form:errors path="matchingPassword" cssClass="error" />
                         <form:password path="matchingPassword" placeholder="Powtórz hasło (*)" class="form-control" />
                     </div>
-
 
                     <!-- First name -->
                     <div style="margin-bottom: 25px" class="input-group">
@@ -117,8 +90,6 @@
                         </label>
                     </div>
 
-
-
                     <!-- Register Button -->
                     <div style="margin-top: 10px" class="form-group">
                         <div class="col-sm-6 controls">
@@ -127,14 +98,9 @@
                     </div>
 
                 </form:form>
-
             </div>
-
         </div>
-
     </div>
-
 </div>
 
-</body>
-</html>
+<jsp:include page="${pageContext.request.contextPath}/resources/layout/footer.jsp" />
