@@ -29,7 +29,7 @@ public class PostCommentDao implements Dao<PostComment> {
 
     public List<PostComment> getAllCommentsFromPost(Integer idPost) {
         Session session = sessionFactory.getCurrentSession();
-        String hql = "from PostComment where post.idPost = :id";
+        String hql = "from PostComment where post.idPost = :id ORDER BY timestamp DESC";
         Query<PostComment> query = session.createQuery(hql, PostComment.class);
         query.setParameter("id", idPost);
         return query.list();

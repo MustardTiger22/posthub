@@ -3,6 +3,7 @@ package com.tai.vikopru.dao;
 import com.tai.vikopru.entity.Post;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -24,7 +25,9 @@ public class PostDao implements Dao<Post> {
     @Override
     public List<Post> getAll() {
         Session session = sessionFactory.getCurrentSession();
-        return session.createQuery("from Post").list();
+        String hql = "FROM Post ORDER BY timestamp DESC";
+        Query<Post> query = session.createQuery(hql, Post.class);
+        return query.list();
     }
 
     @Override

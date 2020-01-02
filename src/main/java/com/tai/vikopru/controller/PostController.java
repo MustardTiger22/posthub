@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @Controller
@@ -30,6 +31,6 @@ public class PostController {
     @PostMapping("/processComment")
     public String addCommentPage(@ModelAttribute("postComment") PostComment postComment) {
         postService.saveComment(postComment, post);
-        return "post";
+        return "redirect:/post/" + post.getIdPost();
     }
 }

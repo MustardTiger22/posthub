@@ -38,9 +38,7 @@ public class PosthubController {
         }
 
         postService.save(crmPost);
-        List<Post> posts = postService.getAll();
-        model.addAttribute("posts", posts);
-        return "index";
+        return "redirect:/";
     }
 
 
