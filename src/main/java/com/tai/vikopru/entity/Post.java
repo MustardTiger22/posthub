@@ -4,6 +4,8 @@ import lombok.Data;
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @Data
 @Entity
@@ -40,6 +42,11 @@ public class Post {
     @JoinColumn(name = "id_user")
     private User user;
 
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+            CascadeType.DETACH, CascadeType.REFRESH})
+    @JoinColumn(name = "id_wykopalisko")
+    Collection<PostComment> postComments;
+
     public Post() {
     }
 
@@ -66,6 +73,14 @@ public class Post {
         this.timestamp = Timestamp.from(Instant.now());
         this.ratingPlus = 0;
         this.ratingMinus = 0;
+    }
+
+    public void addComment(PostComment postComment) {
+        if(postComments == null) {
+            postComments = new ArrayList<>();
+        }
+        postComments.add(postComment);
+        postComment.setPost(this);
     }
 
     @Override

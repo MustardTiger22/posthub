@@ -11,8 +11,12 @@
             <c:if test="${param.error != null}">
                 <i>Błędny login lub hasło!</i>
             </c:if>
-            <div class="form-group"><input class="form-control" type="username" name="username" placeholder="Username"></div>
-            <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Password"></div>
+            <div class="form-group">
+                <input class="form-control" type="username" name="username" placeholder="Username">
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="password" name="password" placeholder="Password">
+            </div>
             <div class="form-group">
                 <button class="btn btn-primary btn-block" type="submit">Log In</button>
             </div>

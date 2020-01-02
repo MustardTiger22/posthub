@@ -30,6 +30,12 @@
                     <a class="card-link" href="#">Wykop(${post.ratingPlus})</a>
                     <a class="card-link" href="#">Zakop(${post.ratingMinus})</a>
                     <h6 class="text-muted card-text mb-2">Dodano: ${post.timestamp}</h6>
+                    <h7 class="text-muted card-text mb-2">
+                        Przez:
+                        <a href="${pageContext.request.contextPath}/profile/${post.user.username}">
+                            ${post.user.username}
+                        </a>
+                    </h7>
                 </div>
             </div>
         </div>

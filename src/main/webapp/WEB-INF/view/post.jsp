@@ -26,17 +26,20 @@
 <div class="container">
     <div class="col"><div class="container">
         <h2 class="text-center">Komentarze</h2>
-
+        <c:forEach var="comment" items="${comments}">
         <div class="card">
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-2">
                         <img src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid"/>
-                        <p class="text-secondary text-center">15 Minutes Ago</p>
+                        <p class="text-secondary text-center">${comment.timestamp}</p>
                     </div>
                     <div class="col-md-10">
                         <p>
-                            <a class="float-left" href="https://maniruzzaman-akash.blogspot.com/p/contact.html"><strong>Maniruzzaman Akash</strong></a>
+                            <a class="float-left"
+                               href="${pageContext.request.contextPath}/profile/${comment.user.username}">
+                                <strong>${comment.user.username}</strong>
+                            </a>
                             <span class="float-right"><i class="text-warning fa fa-star"></i></span>
                             <span class="float-right"><i class="text-warning fa fa-star"></i></span>
                             <span class="float-right"><i class="text-warning fa fa-star"></i></span>
@@ -44,7 +47,7 @@
 
                         </p>
                         <div class="clearfix"></div>
-                        <p>Lorem Ipsum is simply dummy text of the pr make  but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                        <p>${comment.content}</p>
                         <p>
                             <a class="float-right btn text-white btn-danger"> <i class="fa fa-heart"></i> Like</a>
                         </p>
@@ -52,12 +55,14 @@
                 </div>
             </div>
         </div>
+        </c:forEach>
     </div>
         <security:authorize access="isAuthenticated()">
-            <form style="margin: 20px;">
-                <textarea class="form-control"></textarea>
-                <button class="btn btn-danger" style="border: none;width: 151px;height: 58px;background-color: #e86767;margin: 10px;" type="button">Wyślij</button>
-            </form>
+            <form:form action="${pageContext.request.contextPath}/post/processComment"
+                       modelAttribute="postComment" method="post" style="margin: 20px;">
+                <textarea name="content" class="form-control"></textarea>
+                <button class="btn btn-danger" style="border: none;width: 151px;height: 58px;background-color: #e86767;margin: 10px;" type="submit">Wyślij</button>
+            </form:form>
         </security:authorize>
     </div>
 </div>
