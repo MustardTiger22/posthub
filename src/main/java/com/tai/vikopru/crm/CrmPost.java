@@ -6,7 +6,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Data
-public class CrmWykopalisko {
+public class CrmPost {
     @NotNull(message = "Pole jest obowiązkowe!")
     @Size(min = 5, message = "Niepoprawny adres")
     private String sourceUrl;
@@ -21,6 +21,6 @@ public class CrmWykopalisko {
     @Size(min = 5, message = "Minimum 5 znaków!")
     private String description;
 
-    public CrmWykopalisko() {
+    public CrmPost() {
     }
 }

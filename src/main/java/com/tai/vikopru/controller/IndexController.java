@@ -1,16 +1,13 @@
 package com.tai.vikopru.controller;
 
-import com.tai.vikopru.dao.UserDAO;
-import com.tai.vikopru.dao.WykopaliskoDAO;
-import com.tai.vikopru.entity.Wykopalisko;
+import com.tai.vikopru.entity.Post;
 import com.tai.vikopru.service.UserService;
-import com.tai.vikopru.service.WykopaliskoService;
+import com.tai.vikopru.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -21,13 +18,12 @@ public class IndexController {
     UserService userService;
 
     @Autowired
-    WykopaliskoService wykopaliskoService;
-
+    PostService postService;
 
     @GetMapping
     public String indexPage(Model model){
-        List<Wykopalisko> wykopaliska = wykopaliskoService.getAll();
-        model.addAttribute("wykopaliska", wykopaliska);
+        List<Post> posts = postService.getAll();
+        model.addAttribute("posts", posts);
         return "index";
     }
 

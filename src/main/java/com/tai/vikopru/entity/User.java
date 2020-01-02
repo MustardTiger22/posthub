@@ -48,7 +48,7 @@ public class User {
             cascade = {CascadeType.PERSIST, CascadeType.MERGE,
                     CascadeType.DETACH, CascadeType.REFRESH})
     @Getter @Setter
-    private List<Wykopalisko> wykopaliska;
+    private List<Post> posts;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "user_role",
@@ -91,12 +91,12 @@ public class User {
         this.createDate = Timestamp.from(Instant.now());
     }
 
-    public void addWykopalisko(Wykopalisko wykopalisko) {
-        if(wykopaliska == null) {
-            wykopaliska = new ArrayList<>();
+    public void addPost(Post post) {
+        if(posts == null) {
+            posts = new ArrayList<>();
         }
-        wykopaliska.add(wykopalisko);
-        wykopalisko.setUser(this);
+        posts.add(post);
+        post.setUser(this);
     }
 
     @Override

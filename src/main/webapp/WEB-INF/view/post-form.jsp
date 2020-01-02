@@ -5,7 +5,7 @@
 <jsp:include page="${pageContext.request.contextPath}/resources/layout/header.jsp"/>
 
 <div class="contact-clean">
-    <form:form action="${pageContext.request.contextPath}/wykopalisko/processForm" modelAttribute="crmWykopalisko">
+    <form:form action="${pageContext.request.contextPath}/posts/processForm" modelAttribute="crmPost">
         <h2 class="text-center">Dodaj znalezisko</h2>
         <div class="form-group">
             <input class="form-control" type="text" name="sourceUrl" placeholder="Adres materiału źródłowego"></div>

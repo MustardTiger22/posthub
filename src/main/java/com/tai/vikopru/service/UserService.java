@@ -1,7 +1,7 @@
 package com.tai.vikopru.service;
 
-import com.tai.vikopru.dao.RoleDAO;
-import com.tai.vikopru.dao.UserDAO;
+import com.tai.vikopru.dao.RoleDao;
+import com.tai.vikopru.dao.UserDao;
 import com.tai.vikopru.entity.Role;
 import com.tai.vikopru.entity.User;
 import com.tai.vikopru.crm.CrmUser;
@@ -15,7 +15,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.beans.Transient;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.stream.Collectors;
@@ -23,10 +22,10 @@ import java.util.stream.Collectors;
 @Service
 public class UserService implements UserDetailsService {
     @Autowired
-    private UserDAO userDao;
+    private UserDao userDao;
 
     @Autowired
-    private RoleDAO roleDao;
+    private RoleDao roleDao;
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;

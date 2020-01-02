@@ -1,9 +1,9 @@
 package com.tai.vikopru.controller;
 
-import com.tai.vikopru.crm.CrmWykopalisko;
-import com.tai.vikopru.entity.Wykopalisko;
+import com.tai.vikopru.crm.CrmPost;
+import com.tai.vikopru.entity.Post;
 import com.tai.vikopru.service.UserService;
-import com.tai.vikopru.service.WykopaliskoService;
+import com.tai.vikopru.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
@@ -15,31 +15,31 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@RequestMapping("/wykopalisko")
-public class WykopaliskoController {
+@RequestMapping("/posts")
+public class PosthubController {
     @Autowired
     UserService userService;
     @Autowired
-    WykopaliskoService wykopaliskoService;
+    PostService postService;
 
-    @GetMapping
+    @GetMapping("/add")
     public String wykopaliskoFormPage(Model model){
-        model.addAttribute("crmWykopalisko", new CrmWykopalisko());
-        return "znalezisko-form";
+        model.addAttribute("crmPost", new CrmPost());
+        return "post-form";
     }
 
     @PostMapping("/processForm")
-    public String wykopaliskoProcessFormPage(@Valid @ModelAttribute("crmWykopalisko") CrmWykopalisko crmWykopalisko,
+    public String wykopaliskoProcessFormPage(@Valid @ModelAttribute("crmPost") CrmPost crmPost,
                                       BindingResult bindingResult,
                                       Model model){
         // form validation
         if (bindingResult.hasErrors()){
-            return "znalezisko-form";
+            return "post-form";
         }
 
-        wykopaliskoService.save(crmWykopalisko);
-        List<Wykopalisko> wykopaliska = wykopaliskoService.getAll();
-        model.addAttribute("wykopaliska", wykopaliska);
+        postService.save(crmPost);
+        List<Post> posts = postService.getAll();
+        model.addAttribute("posts", posts);
         return "index";
     }
 

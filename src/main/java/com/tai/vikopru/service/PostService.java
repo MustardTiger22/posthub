@@ -1,50 +1,51 @@
 package com.tai.vikopru.service;
 
-import com.tai.vikopru.crm.CrmWykopalisko;
-import com.tai.vikopru.dao.WykopaliskoDAO;
+import com.tai.vikopru.crm.CrmPost;
+import com.tai.vikopru.dao.PostDao;
 import com.tai.vikopru.entity.User;
-import com.tai.vikopru.entity.Wykopalisko;
+import com.tai.vikopru.entity.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
 
 @Service
-public class WykopaliskoService {
+public class PostService {
     @Autowired
     UserService userService;
     @Autowired
-    WykopaliskoDAO wykopaliskoDAO;
+    PostDao postDAO;
 
     @Transactional
-    public void save(CrmWykopalisko crmWykopalisko) {
+    public void save(@Valid CrmPost crmPost) {
 //        Get current logged in user
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName();
         User user = userService.findByUserName(username);
 
-        Wykopalisko wykopalisko = new Wykopalisko(
-                crmWykopalisko.getTitle(),
-                crmWykopalisko.getDescription(),
-                crmWykopalisko.getImageSrc(),
-                crmWykopalisko.getSourceUrl()
+        Post post = new Post(
+                crmPost.getTitle(),
+                crmPost.getDescription(),
+                crmPost.getImageSrc(),
+                crmPost.getSourceUrl()
         );
-        wykopalisko.setUser(user);
-        wykopaliskoDAO.save(wykopalisko);
+        post.setUser(user);
+        postDAO.save(post);
     }
 
     @Transactional
-    public List<Wykopalisko> getAll(){
-        return wykopaliskoDAO.getAll();
+    public List<Post> getAll(){
+        return postDAO.getAll();
     }
 
     @Transactional
-    public Optional<Wykopalisko> get(Integer id) {
-        return wykopaliskoDAO.get(id);
+    public Optional<Post> get(Integer id) {
+        return postDAO.get(id);
     }
 }

@@ -1,7 +1,7 @@
 package com.tai.vikopru.controller;
 
-import com.tai.vikopru.entity.Wykopalisko;
-import com.tai.vikopru.service.WykopaliskoService;
+import com.tai.vikopru.entity.Post;
+import com.tai.vikopru.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,15 +10,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/znalezisko")
-public class ZnaleziskoController {
+@RequestMapping("/post")
+public class PostController {
     @Autowired
-    WykopaliskoService wykopaliskoService;
+    PostService postService;
 
     @GetMapping(path = "/{id}")
     public String znaleziskoPage(Model model, @PathVariable Integer id){
-        Wykopalisko wykopalisko = wykopaliskoService.get(id).get();
-        model.addAttribute("wykopalisko", wykopalisko);
-        return "znalezisko";
+        Post post = postService.get(id).get();
+        model.addAttribute("post", post);
+        return "post";
     }
 }

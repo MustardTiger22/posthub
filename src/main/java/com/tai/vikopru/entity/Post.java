@@ -8,11 +8,11 @@ import java.time.Instant;
 @Data
 @Entity
 @Table(name = "wykopalisko")
-public class Wykopalisko {
+public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id_wykopalisko")
-    private Integer idWykopalisko;
+    private Integer idPost;
 
     @Column(name = "title")
     private String title;
@@ -40,15 +40,15 @@ public class Wykopalisko {
     @JoinColumn(name = "id_user")
     private User user;
 
-    public Wykopalisko() {
+    public Post() {
     }
 
-    public Wykopalisko(String title,
-                       String description,
-                       Integer ratingPlus,
-                       Integer ratingMinus,
-                       String sourceUrl,
-                       String imageSrc) {
+    public Post(String title,
+                String description,
+                Integer ratingPlus,
+                Integer ratingMinus,
+                String sourceUrl,
+                String imageSrc) {
         this.title = title;
         this.description = description;
         this.ratingPlus = ratingPlus;
@@ -58,7 +58,7 @@ public class Wykopalisko {
         this.imageSrc = imageSrc;
     }
 
-    public Wykopalisko(String title, String description, String imageSrc, String sourceUrl) {
+    public Post(String title, String description, String imageSrc, String sourceUrl) {
         this.title = title;
         this.description = description;
         this.sourceUrl = sourceUrl;
@@ -71,7 +71,7 @@ public class Wykopalisko {
     @Override
     public String toString() {
         return "Wykopalisko{" +
-                "idWykopalisko=" + idWykopalisko +
+                "idWykopalisko=" + idPost +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", timestamp=" + timestamp +

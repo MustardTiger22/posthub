@@ -3,7 +3,7 @@ package com.tai.vikopru.dao;
 import java.util.List;
 import java.util.Optional;
 
-public interface DAO<T> {
+public interface Dao<T> {
     Optional<T> get(Integer id);
 
     List<T> getAll();

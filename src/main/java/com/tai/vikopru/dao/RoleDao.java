@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public class RoleDAO implements DAO<Role> {
+public class RoleDao implements Dao<Role> {
     @Autowired
     private SessionFactory sessionFactory;
 
