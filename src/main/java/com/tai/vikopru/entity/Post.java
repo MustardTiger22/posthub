@@ -3,6 +3,7 @@ package com.tai.vikopru.entity;
 import lombok.Data;
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -42,10 +43,13 @@ public class Post {
     @JoinColumn(name = "id_user")
     private User user;
 
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
-            CascadeType.DETACH, CascadeType.REFRESH})
-    @JoinColumn(name = "id_wykopalisko")
+    @OneToMany(mappedBy = "post", orphanRemoval = true,
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+            CascadeType.DETACH, CascadeType.REFRESH, CascadeType.REMOVE})
     Collection<PostComment> postComments;
+
+    @Transient
+    String formattedTimestamp;
 
     public Post() {
     }
@@ -81,6 +85,10 @@ public class Post {
         }
         postComments.add(postComment);
         postComment.setPost(this);
+    }
+
+    public String getFormattedTimestamp() {
+        return new SimpleDateFormat("MM/dd/yyyy HH:mm:ss").format(timestamp);
     }
 
     @Override

@@ -12,7 +12,11 @@
         </div>
     </security:authorize>
     <c:forEach var="post" items="${posts}">
-    <div class="row" style="margin: 0px;padding: 20px;height: 230px;">
+        <c:url var="profileLink" value="/profile/${post.user.username}" />
+        <c:url var="deleteLink" value="/admin/deletePost">
+            <c:param name="idPost" value="${post.idPost}" />
+        </c:url>
+    <div class="row" style="margin: 25px;padding: 20px; height: 33vh;">
         <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4" style="padding:0px;">
             <div style="background-image: url('${post.imageSrc}');height: 100%;background-repeat: no-repeat;background-size: cover;background-position: center;"></div>
         </div>
@@ -29,14 +33,21 @@
                     <a class="card-link" href="${post.sourceUrl}">Źródło</a>
                     <a class="card-link" href="#">Wykop(${post.ratingPlus})</a>
                     <a class="card-link" href="#">Zakop(${post.ratingMinus})</a>
-                    <h6 class="text-muted card-text mb-2">Dodano: ${post.timestamp}</h6>
-                    <h7 class="text-muted card-text mb-2">
+                    <h6 class="text-muted card-text mb-2">Dodano: ${post.formattedTimestamp}</h6>
+                    <p class="text-muted card-text mb-2">
                         Przez:
-                        <a href="${pageContext.request.contextPath}/profile/${post.user.username}">
+                        <a href="${profileLink}">
                             ${post.user.username}
                         </a>
-                    </h7>
+                    </p>
                 </div>
+                <security:authorize access="hasRole('ADMIN')">
+                <div class="card-footer">
+                    <a class="btn btn-danger action-button" role="button" href="${deleteLink}">
+                        Usuń post
+                    </a>
+                </div>
+                </security:authorize>
             </div>
         </div>
     </div>

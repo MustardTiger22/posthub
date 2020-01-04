@@ -47,7 +47,6 @@ public class User {
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER,
             cascade = {CascadeType.PERSIST, CascadeType.MERGE,
                     CascadeType.DETACH, CascadeType.REFRESH})
-    @Getter @Setter
     private List<Post> posts;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

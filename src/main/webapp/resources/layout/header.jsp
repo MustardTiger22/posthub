@@ -37,8 +37,8 @@
                 </ul>
                     <security:authorize access="isAnonymous()">
                         <span class="navbar-text">
-                            <a class="login" href="${pageContext.request.contextPath}/login">Log In</a>
-                            <a class="btn btn-light action-button" role="button" href="${pageContext.request.contextPath}/register">Sign Up</a>
+                            <a class="login" href="${pageContext.request.contextPath}/login">Logowanie</a>
+                            <a class="btn btn-light action-button" role="button" href="${pageContext.request.contextPath}/register">Rejestracja</a>
                         </span>
                     </security:authorize>
                     <security:authorize access="isAuthenticated()">
@@ -51,7 +51,7 @@
                             <a class="btn btn-light action-button" role="button" href="${pageContext.request.contextPath}/profile/<security:authentication property="principal.username"/>">Profil</a>
                         </span>
                         <form:form action="${pageContext.request.contextPath}/logout" method="post">
-                            <input type="submit" value="Log Out" class="btn btn-light action-button">
+                            <input type="submit" value="Wyloguj" class="btn btn-light action-button">
                         </form:form>
                     </security:authorize>
             </div>

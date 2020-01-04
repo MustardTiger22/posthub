@@ -6,7 +6,7 @@
 
     <div class="login-clean">
         <form:form action="${pageContext.request.contextPath}/perform_login" method="POST">
-            <h2 class="">Login Form</h2>
+            <h2 class="">Logowanie</h2>
             <div class="illustration"><i class="icon ion-ios-navigate"></i></div>
             <c:if test="${param.error != null}">
                 <i>Błędny login lub hasło!</i>
@@ -18,13 +18,13 @@
                 <input class="form-control" type="password" name="password" placeholder="Password">
             </div>
             <div class="form-group">
-                <button class="btn btn-primary btn-block" type="submit">Log In</button>
+                <button class="btn btn-primary btn-block" type="submit">Zaloguj</button>
             </div>
             <div>
                 <a href="${pageContext.request.contextPath}/register"
                    class="btn btn-primary"
                    role="button" aria-pressed="true">
-                    Register New User
+                    Zarejestruj się
                 </a>
             </div>
         </form:form>

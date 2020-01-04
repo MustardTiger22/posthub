@@ -48,6 +48,9 @@ public class PostCommentDao implements Dao<PostComment> {
 
     @Override
     public void delete(Integer id) {
-
+        Session session = sessionFactory.getCurrentSession();
+        PostComment postComment = session.load(PostComment.class, id);
+        session.delete(postComment);
+        session.flush();
     }
 }

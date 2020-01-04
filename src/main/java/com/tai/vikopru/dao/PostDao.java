@@ -43,6 +43,8 @@ public class PostDao implements Dao<Post> {
 
     @Override
     public void delete(Integer id) {
-
+        Session session = sessionFactory.getCurrentSession();
+        Post post = session.get(Post.class, id);
+        session.delete(post);
     }
 }

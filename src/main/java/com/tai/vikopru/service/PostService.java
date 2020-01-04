@@ -67,6 +67,16 @@ public class PostService {
     }
 
     @Transactional
+    public void delete(Integer idPost) {
+        postDAO.delete(idPost);
+    }
+
+    @Transactional
+    public void deleteComment(Integer idComment) {
+        postCommentDao.delete(idComment);
+    }
+
+    @Transactional
     public List<PostComment> getAllCommentsFromPost(Integer idPost) {
         return postCommentDao.getAllCommentsFromPost(idPost);
     }

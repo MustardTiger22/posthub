@@ -53,12 +53,16 @@
                         <div class="col" style="padding: 0px;">
                             <div class="card" style="height: 100%;">
                                 <div class="card-body">
-                                    <h4 class="card-title">${post.title}</h4>
+                                    <h4 class="card-title">
+                                        <a href="${pageContext.request.contextPath}/post/${post.idPost}">
+                                                ${post.title}
+                                        </a>
+                                    </h4>
                                     <p class="card-text">${post.description}</p>
                                     <a class="card-link" href="${post.sourceUrl}">Źródło</a>
                                     <a class="card-link" href="#">Wykop(${post.ratingPlus})</a>
                                     <a class="card-link" href="#">Zakop(${post.ratingMinus})</a>
-                                    <h6 class="text-muted card-text mb-2">Dodano: ${post.timestamp}</h6>
+                                    <h6 class="text-muted card-text mb-2">Dodano: ${post.formattedTimestamp}</h6>
                                 </div>
                             </div>
                         </div>

@@ -35,7 +35,7 @@ public class CrmUser {
 
     @ValidEmail
     @NotNull(message = "Pole jest obowiązkowe!")
-    @Size(min = 1, message = "Pole jest obowiązkowe!")
+    @Size(min = 5, message = "Pole jest obowiązkowe!")
     private String email;
 
     @NotNull(message = "Pole jest obowiązkowe!")

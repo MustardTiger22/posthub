@@ -19,6 +19,12 @@
                 <a class="card-link" href="#">Wykop(${post.ratingPlus})</a>
                 <a class="card-link" href="#">Zakop(${post.ratingMinus})</a>
                 <h6 class="text-muted card-text mb-2">Dodano: ${post.timestamp}</h6>
+                <h7 class="text-muted card-text mb-2">
+                    Przez:
+                    <a href="${pageContext.request.contextPath}/profile/${post.user.username}">
+                        ${post.user.username}
+                    </a>
+                </h7>
             </div>
         </div>
     </div>
@@ -27,12 +33,16 @@
     <div class="col"><div class="container">
         <h2 class="text-center">Komentarze</h2>
         <c:forEach var="comment" items="${comments}">
-        <div class="card">
+            <c:url var="deleteLink" value="/admin/deleteComment">
+                <c:param name="idPost" value="${post.idPost}" />
+                <c:param name="idComment" value="${comment.idComment}" />
+            </c:url>
+        <div class="card" style="margin: 5px;">
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-2">
                         <img src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid"/>
-                        <p class="text-secondary text-center">${comment.timestamp}</p>
+                        <p class="text-secondary text-center">${comment.formattedTimestamp}</p>
                     </div>
                     <div class="col-md-10">
                         <p>
@@ -48,9 +58,13 @@
                         </p>
                         <div class="clearfix"></div>
                         <p>${comment.content}</p>
+                        <security:authorize access="hasRole('ADMIN')">
                         <p>
-                            <a class="float-right btn text-white btn-danger"> <i class="fa fa-heart"></i> Like</a>
+                            <a href="${deleteLink}" class="btn btn-danger action-button" role="button">
+                                Usuń
+                            </a>
                         </p>
+                        </security:authorize>
                     </div>
                 </div>
             </div>
@@ -60,7 +74,7 @@
         <security:authorize access="isAuthenticated()">
             <form:form action="${pageContext.request.contextPath}/post/processComment"
                        modelAttribute="postComment" method="post" style="margin: 20px;">
-                <textarea name="content" class="form-control"></textarea>
+                <textarea pattern=".{5,}" name="content" class="form-control" required></textarea>
                 <button class="btn btn-danger" style="border: none;width: 151px;height: 58px;background-color: #e86767;margin: 10px;" type="submit">Wyślij</button>
             </form:form>
         </security:authorize>
