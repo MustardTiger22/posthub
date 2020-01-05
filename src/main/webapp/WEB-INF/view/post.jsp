@@ -74,7 +74,7 @@
         <security:authorize access="isAuthenticated()">
             <form:form action="${pageContext.request.contextPath}/post/processComment"
                        modelAttribute="postComment" method="post" style="margin: 20px;">
-                <textarea pattern=".{5,}" name="content" class="form-control" required></textarea>
+                <textarea minlength="5" name="content" class="form-control" required></textarea>
                 <button class="btn btn-danger" style="border: none;width: 151px;height: 58px;background-color: #e86767;margin: 10px;" type="submit">Wyślij</button>
             </form:form>
         </security:authorize>
