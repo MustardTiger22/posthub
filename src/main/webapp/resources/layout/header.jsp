@@ -31,9 +31,6 @@
                     <li class="nav-item" role="presentation">
                         <a class="nav-link" href="${pageContext.request.contextPath}/">Wykopalisko</a>
                     </li>
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="${pageContext.request.contextPath}/mikroblog">Mikroblog</a>
-                    </li>
                 </ul>
                     <security:authorize access="isAnonymous()">
                         <span class="navbar-text">

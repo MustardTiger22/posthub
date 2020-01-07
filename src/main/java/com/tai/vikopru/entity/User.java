@@ -1,11 +1,9 @@
 package com.tai.vikopru.entity;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -18,7 +16,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id_user")
-    private Long idUser;
+    private Integer idUser;
 
     @Column(name = "username")
     private String username;
@@ -54,6 +52,9 @@ public class User {
             joinColumns = @JoinColumn(name = "id_user"),
             inverseJoinColumns = @JoinColumn(name = "id_role"))
     private Collection<Role> roles;
+
+    @Transient
+    String formattedTimestamp;
 
     public User() {
     }
@@ -96,6 +97,10 @@ public class User {
         }
         posts.add(post);
         post.setUser(this);
+    }
+
+    public String getFormattedTimestamp() {
+        return new SimpleDateFormat("MM/dd/yyyy HH:mm:ss").format(createDate);
     }
 
     @Override

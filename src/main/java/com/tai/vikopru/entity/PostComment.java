@@ -48,25 +48,5 @@ public class PostComment {
         return new SimpleDateFormat("MM/dd/yyyy HH:mm:ss").format(timestamp);
     }
 
-//    public String getFormattedTimestamp(){
-//        PeriodFormatter daysHoursMinutes = new PeriodFormatterBuilder()
-//                .appendDays()
-//                .appendSuffix(" day", " days")
-//                .appendSeparator(" and ")
-//                .appendMinutes()
-//                .appendSuffix(" minute", " minutes")
-//                .appendSeparator(" and ")
-//                .appendSeconds()
-//                .appendSuffix(" second", " seconds")
-//                .toFormatter();
-//
-//
-//        LocalDate now = LocalDate.now();
-//        DateTimeFormatter dtf = DateTimeFormat.forPattern("dd/MM/YYYY HH:mm");
-//        String formattedDate = dtf.print(timestamp.toLocalDateTime());
-//        LocalDate postTimestamp = LocalDate.parse(String.valueOf(timestamp));
-//        Period period = new Period(postTimestamp, now);
-//
-//        return daysHoursMinutes.print(period.normalizedStandard());
-//    }
+
 }

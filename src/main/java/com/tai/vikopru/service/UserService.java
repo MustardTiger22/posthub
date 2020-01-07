@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -47,6 +48,11 @@ public class UserService implements UserDetailsService {
 
         user.setRoles(Arrays.asList(roleDao.findRoleByName("ROLE_USER")));
         userDao.save(user);
+    }
+
+    @Transactional
+    public List<User> getAll() {
+        return userDao.getAll();
     }
 
     @Override

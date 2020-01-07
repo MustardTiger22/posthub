@@ -14,6 +14,7 @@ import java.util.Optional;
 public class UserDao implements Dao<User> {
     @Autowired
     SessionFactory sessionFactory;
+
     @Override
     public Optional<User> get(Integer id) {
         Session session = sessionFactory.getCurrentSession();
@@ -23,13 +24,14 @@ public class UserDao implements Dao<User> {
 
     @Override
     public List<User> getAll() {
-        return null;
+        Session session = sessionFactory.getCurrentSession();
+        return session.createQuery("FROM User").getResultList();
     }
 
     @Override
     public void save(User user) {
-        Session currentSession = sessionFactory.getCurrentSession();
-        currentSession.saveOrUpdate(user);
+        Session session = sessionFactory.getCurrentSession();
+        session.saveOrUpdate(user);
     }
 
     @Override
@@ -39,8 +41,12 @@ public class UserDao implements Dao<User> {
 
     @Override
     public void delete(Integer id) {
-
+        Session session = sessionFactory.getCurrentSession();
+        User user = session.get(User.class, id);
+        session.remove(user);
     }
+
+
 
     public User findByUserName(String username) {
         Session currentSession = sessionFactory.getCurrentSession();
