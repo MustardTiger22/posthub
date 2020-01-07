@@ -1,5 +1,7 @@
 package com.tai.vikopru.dao;
 
+import com.tai.vikopru.entity.Post;
+import com.tai.vikopru.entity.PostComment;
 import com.tai.vikopru.entity.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -43,10 +45,8 @@ public class UserDao implements Dao<User> {
     public void delete(Integer id) {
         Session session = sessionFactory.getCurrentSession();
         User user = session.get(User.class, id);
-        session.remove(user);
+        session.delete(user);
     }
-
-
 
     public User findByUserName(String username) {
         Session currentSession = sessionFactory.getCurrentSession();

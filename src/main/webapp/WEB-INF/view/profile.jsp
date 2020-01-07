@@ -45,7 +45,7 @@
                 <h1>Dodane znaleziska:</h1>
                 <hr>
                 <c:forEach var="post" items="${user.posts}">
-                    <div class="row" style="margin: 0px; padding: 20px;height: 230px;">
+                    <div class="row" style="margin: 30px 0 0 0; padding: 20px;height: 230px;">
                         <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4" style="padding:0px;">
                             <div style="background-image: url('${post.imageSrc}');height: 100%;background-repeat: no-repeat;background-size: cover;background-position: center;"></div>
                         </div>

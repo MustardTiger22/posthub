@@ -41,7 +41,7 @@
                     <security:authorize access="isAuthenticated()">
                         <security:authorize access="hasRole('ADMIN')">
                             <span class="navbar-text">
-                                <a class="btn btn-light action-button" role="button" href="#">Panel Administracyjny</a>
+                                <a class="btn btn-light action-button" role="button" href="${pageContext.request.contextPath}/admin/panel">Panel Administracyjny</a>
                             </span>
                         </security:authorize>
                         <span class="navbar-text">

@@ -14,10 +14,12 @@
             <th scope="col">Nazwisko</th>
             <th scope="col">Płeć</th>
             <th scope="col">Data założenia</th>
+            <th scope="col">Akcje</th>
         </tr>
     </thead>
     <c:forEach var="user" items="${users}">
     <c:url var="profileLink" value="/profile/${user.username}" />
+    <c:url var="deleteLink" value="panel/delete?idUser=${user.idUser}" />
     <tbody>
         <tr>
             <th scope="row">${user.idUser}</th>
@@ -29,6 +31,11 @@
             <td>${user.firstName}</td>
             <td>${user.gender}</td>
             <td>${user.formattedTimestamp}</td>
+            <td>
+                <a class="btn btn-danger action-button" role="button" href="${deleteLink}">
+                    Usuń konto
+                </a>
+            </td>
         </tr>
     </c:forEach>
     </tbody>
