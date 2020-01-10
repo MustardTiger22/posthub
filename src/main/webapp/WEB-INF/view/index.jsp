@@ -31,8 +31,6 @@
                     </h4>
                     <p class="card-text">${post.description}</p>
                     <a class="card-link" target="_blank" href="${post.sourceUrl}">Źródło</a>
-                    <a class="card-link" href="#">Wykop(${post.ratingPlus})</a>
-                    <a class="card-link" href="#">Zakop(${post.ratingMinus})</a>
                     <h6 class="text-muted card-text mb-2">Dodano: ${post.formattedTimestamp}</h6>
                     <p class="text-muted card-text mb-2">
                         Przez:

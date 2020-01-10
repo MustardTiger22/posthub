@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <jsp:include page="${pageContext.request.contextPath}/resources/layout/header.jsp" />
-
+<c:url var="updateProfileLink" value="/profile/edit" />
     <div class="container profile profile-view" id="profile">
         <div class="row">
             <div class="col-md-12 alert-col relative">
@@ -35,6 +35,14 @@
                     <div class="form-group"><label>Email </label>
                         <input class="form-control" value="${user.email}" type="email" autocomplete="off" name="email"  disabled>
                     </div>
+                    <security:authorize access="isAuthenticated()">
+                        <c:if test="${user.username.equals(sessionUser.username)}">
+                        <a class="btn btn-danger action-button" role="button" href="${updateProfileLink}">
+                            Edytuj profil
+                        </a>
+                        </c:if>
+                    </security:authorize>
+
                 </div>
             </div>
         </form>
@@ -60,8 +68,6 @@
                                     </h4>
                                     <p class="card-text">${post.description}</p>
                                     <a class="card-link" href="${post.sourceUrl}">Źródło</a>
-                                    <a class="card-link" href="#">Wykop(${post.ratingPlus})</a>
-                                    <a class="card-link" href="#">Zakop(${post.ratingMinus})</a>
                                     <h6 class="text-muted card-text mb-2">Dodano: ${post.formattedTimestamp}</h6>
                                 </div>
                             </div>

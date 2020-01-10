@@ -74,4 +74,9 @@ public class UserService implements UserDetailsService {
     public void delete(Integer id) {
         userDao.delete(id);
     }
+
+    @Transactional
+    public void update(User user, String params[]) {
+        userDao.update(user, params);
+    }
 }

@@ -16,8 +16,6 @@
                 <h4 class="card-title">${post.title}</h4>
                 <p class="card-text">${post.description}</p>
                 <a class="card-link" href="${post.sourceUrl}">Źródło</a>
-                <a class="card-link" href="#">Wykop(${post.ratingPlus})</a>
-                <a class="card-link" href="#">Zakop(${post.ratingMinus})</a>
                 <h6 class="text-muted card-text mb-2">Dodano: ${post.timestamp}</h6>
                 <h7 class="text-muted card-text mb-2">
                     Przez:

@@ -42,10 +42,11 @@ public class User {
     @Column(name = "create_date")
     private Timestamp createDate;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER,
-            cascade = {CascadeType.PERSIST, CascadeType.MERGE,
-                    CascadeType.DETACH, CascadeType.REFRESH})
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, orphanRemoval=true)
     private List<Post> posts;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, orphanRemoval=true)
+    private List<PostComment> comments;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_role",
@@ -64,23 +65,6 @@ public class User {
                 String email,
                 String firstName,
                 String lastName,
-                String gender,
-                String avatarPath) {
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.gender = gender;
-        this.avatarPath = avatarPath;
-        this.createDate = Timestamp.from(Instant.now());
-    }
-
-    public User(String username,
-                String password,
-                String email,
-                String firstName,
-                String lastName,
                 String gender) {
         this.username = username;
         this.password = password;
@@ -89,6 +73,14 @@ public class User {
         this.lastName = lastName;
         this.gender = gender;
         this.createDate = Timestamp.from(Instant.now());
+    }
+
+    public User(String firstName,
+                String lastName,
+                String email) {
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
     public void addPost(Post post) {

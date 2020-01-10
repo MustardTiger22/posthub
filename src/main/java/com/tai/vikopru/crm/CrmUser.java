@@ -12,7 +12,6 @@ import javax.validation.constraints.Size;
 
 @Data
 public class CrmUser {
-
     @NotNull(message = "Pole jest obowiązkowe!")
     @Size(min = 5, message = "Za krótka nazwa użytkownika! Minimum 5 znaków.")
     private String username;

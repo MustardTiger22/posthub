@@ -29,8 +29,7 @@ public class PosthubController {
 
     @PostMapping("/processForm")
     public String wykopaliskoProcessFormPage(@Valid @ModelAttribute("crmPost") CrmPost crmPost,
-                                      BindingResult bindingResult,
-                                      Model model){
+                                      BindingResult bindingResult){
         // form validation
         if (bindingResult.hasErrors()){
             return "post-form";

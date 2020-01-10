@@ -26,10 +26,10 @@ public class RegistrationController {
 
     @PostMapping("/processForm")
     public String ProcessRegistrationFormPage(@Valid @ModelAttribute("crmUser") CrmUser crmUser,
-                                              BindingResult theBindingResult,
+                                              BindingResult bindingResult,
                                               Model theModel) {
         // form validation
-        if (theBindingResult.hasErrors()){
+        if (bindingResult.hasErrors()){
             return "registration-form";
         }
         String username = crmUser.getUsername();

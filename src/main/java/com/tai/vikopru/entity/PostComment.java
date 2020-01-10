@@ -22,10 +22,12 @@ public class PostComment {
     Integer ratingMinus;
     @Column(name = "timestamp")
     Timestamp timestamp;
+
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
             CascadeType.DETACH, CascadeType.REFRESH})
     @JoinColumn(name = "id_user")
     User user;
+
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
             CascadeType.DETACH, CascadeType.REFRESH})
     @JoinColumn(name = "id_wykopalisko")

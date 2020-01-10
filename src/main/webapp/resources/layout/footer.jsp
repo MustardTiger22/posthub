@@ -38,6 +38,5 @@ class="icon ion-social-instagram"></i></a>
 </div>
 <script src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/Profile-Edit-Form.js"></script>
 </body>
 </html>

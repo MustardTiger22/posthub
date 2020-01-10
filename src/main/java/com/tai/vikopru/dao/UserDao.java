@@ -1,7 +1,5 @@
 package com.tai.vikopru.dao;
 
-import com.tai.vikopru.entity.Post;
-import com.tai.vikopru.entity.PostComment;
 import com.tai.vikopru.entity.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -38,7 +36,20 @@ public class UserDao implements Dao<User> {
 
     @Override
     public void update(User user, String[] params) {
+        Session session = sessionFactory.getCurrentSession();
+        StringBuilder updateStmt = new StringBuilder();
+        updateStmt.append("update User u ");
+        updateStmt.append("set u.firstName = :firstName ");
+        updateStmt.append(", u.lastName = :lastName");
+        updateStmt.append(", u.email = :email");
+        updateStmt.append(" where u.idUser = :idUser");
 
+        Query<User> query = session.createQuery(updateStmt.toString());
+        query.setParameter("firstName", params[0]);
+        query.setParameter("lastName", params[1]);
+        query.setParameter("email", params[2]);
+        query.setParameter("idUser", user.getIdUser());
+        query.executeUpdate();
     }
 
     @Override
@@ -46,6 +57,7 @@ public class UserDao implements Dao<User> {
         Session session = sessionFactory.getCurrentSession();
         User user = session.get(User.class, id);
         session.delete(user);
+        session.flush();
     }
 
     public User findByUserName(String username) {

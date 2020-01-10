@@ -43,9 +43,8 @@ public class Post {
     @JoinColumn(name = "id_user")
     private User user;
 
-    @OneToMany(mappedBy = "post", orphanRemoval = true,
-            cascade = {CascadeType.PERSIST, CascadeType.MERGE,
-            CascadeType.DETACH, CascadeType.REFRESH, CascadeType.REMOVE})
+    @OneToMany(mappedBy = "post", fetch = FetchType.LAZY, orphanRemoval=true,
+            cascade = {CascadeType.ALL})
     Collection<PostComment> postComments;
 
     @Transient
